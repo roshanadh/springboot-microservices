@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class OrderService {
 
   private final OrderRepository orderRepository;
-  private final WebClient webClient;
+  private final WebClient.Builder webClientBuilder;
 
   public void placeOrder(OrderRequest orderRequest) {
     Order order = new Order();
@@ -40,8 +40,9 @@ public class OrderService {
             .collect(Collectors.toList());
 
     // Call Inventory Service, and place order if product is in stock
-    String inventoryServiceUri = "http://localhost:8082/api/inventory";
-    InventoryResponse[] inventoryResponses = webClient.get()
+    String inventoryServiceUri = "http://inventory-service/api/inventory";
+    InventoryResponse[] inventoryResponses = webClientBuilder.build()
+            .get()
             .uri(inventoryServiceUri,
                     uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
             .retrieve()
