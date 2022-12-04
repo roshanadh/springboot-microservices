@@ -6,7 +6,6 @@ import me.roshanadh.productservice.dto.ProductRequest;
 import me.roshanadh.productservice.dto.ProductResponse;
 import me.roshanadh.productservice.model.Product;
 import me.roshanadh.productservice.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
